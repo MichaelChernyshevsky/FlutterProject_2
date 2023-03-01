@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "756529959319",
+    "project_id": "economy-510e6",
+    "storage_bucket": "economy-510e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756529959319:android:b7012cc8151765e3c3b4d2",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756529959319-ka1vqi2nm645posheae14jcte55jb2bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR5yBiRYtWOYJVrddmsVODkTqyYn4d3N8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756529959319-ka1vqi2nm645posheae14jcte55jb2bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
