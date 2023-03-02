@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         //     child: const HomeScreen()),
         AppRoute.home: (_) => const Home(),
       },
-      initialRoute: AppRoute.initial,
+      initialRoute: AppRoute.home,
     );
   }
 }
