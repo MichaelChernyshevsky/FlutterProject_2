@@ -32,13 +32,15 @@ class _LoginState extends State<LoginScreen> {
     });
   }
 
-  void login() {
+  void login() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    Provider.of<UserProvider>(context, listen: false).login(context,
+    final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    final navigator = Navigator.of(context);
+    await userProvider.login(context,
         email: email.text.trim(), password: password.text.trim());
-    if (Provider.of<UserProvider>(context, listen: false).isExists) {
-      Navigator.of(context).pushNamed(AppRoute.home);
+    if (userProvider.isLoggedIn) {
+      navigator.pushNamed(AppRoute.home);
     }
   }
 

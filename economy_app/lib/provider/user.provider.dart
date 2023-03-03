@@ -7,22 +7,13 @@ class UserProvider extends ChangeNotifier {
     init();
   }
   User? user;
-  bool isExists = false;
   String? userMail;
-  Future<bool> get isLoggedIn async => user != null;
+  bool get isLoggedIn => user != null;
   init() {
     user = FirebaseAuth.instance.currentUser;
-    userMail = user?.email;
-    if (user != null) {
-      isExists = true;
-    }
+    userMail = user?.email;    
     FirebaseAuth.instance.authStateChanges().listen((event) {
       user = user;
-      if (user != null) {
-        isExists = true;
-      } else {
-        isExists = false;
-      }
       notifyListeners();
     });
   }

@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     userProvider.addListener(() {
-      if (!userProvider.isExists) {
+      if (!userProvider.isLoggedIn) {
         navigatorKey.currentState
             ?.pushNamedAndRemoveUntil(AppRoute.login, (route) => false);
       }

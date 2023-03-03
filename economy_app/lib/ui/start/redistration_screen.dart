@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/app_routes.dart';
 import 'package:project/provider/user.provider.dart';
 import 'package:project/service/notification.dart';
 import 'package:project/widgets/start_elements/registration_element.dart';
@@ -34,7 +35,7 @@ class _Registration extends State<RegistrationScreen> {
     });
   }
 
-  void signUp() {
+  void signUp() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
     if (passwordCheck.text != passwordMain.text) {
@@ -45,8 +46,13 @@ class _Registration extends State<RegistrationScreen> {
       );
       return;
     }
-    Provider.of<UserProvider>(context, listen: false).registration(context,
+    final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    final navigator = Navigator.of(context);
+    await userProvider.registration(context,
         email: email.text.trim(), password: passwordMain.text.trim());
+    if (userProvider.isLoggedIn) {
+      navigator.pushNamed(AppRoute.home);
+    }
   }
 
   @override
