@@ -4,6 +4,7 @@ import 'package:project/firebase_options.dart';
 import 'package:project/models/app_routes.dart';
 import 'package:project/provider/user.provider.dart';
 import 'package:project/ui/main/home.dart';
+import 'package:project/ui/main/view/money_screen.dart';
 import 'package:project/ui/splash_screen.dart';
 import 'package:project/ui/start/login_screen.dart';
 import 'package:project/ui/start/redistration_screen.dart';
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
         //     create: (BuildContext context) =>
         //         DictsBloc(GetIt.I.get<DictionarySevice>()),
         //     child: const HomeScreen()),
-        AppRoute.home: (_) => const Home(),
+        // AppRoute.money: (_) =>  MoneyScreen(),
       },
       initialRoute: AppRoute.home,
     );
