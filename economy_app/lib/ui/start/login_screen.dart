@@ -35,7 +35,8 @@ class _LoginState extends State<LoginScreen> {
   void login() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    final UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     final navigator = Navigator.of(context);
     await userProvider.login(context,
         email: email.text.trim(), password: password.text.trim());
@@ -60,6 +61,7 @@ class _LoginState extends State<LoginScreen> {
         child: Form(
           key: formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InputEmailLogin(email: email),
               const SizedBox(height: 30),

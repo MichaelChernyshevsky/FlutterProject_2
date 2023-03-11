@@ -46,7 +46,8 @@ class _Registration extends State<RegistrationScreen> {
       );
       return;
     }
-    final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    final UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     final navigator = Navigator.of(context);
     await userProvider.registration(context,
         email: email.text.trim(), password: passwordMain.text.trim());
@@ -67,16 +68,19 @@ class _Registration extends State<RegistrationScreen> {
         child: Form(
           key: formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InputEmailReg(email: email),
               const SizedBox(height: 30),
               InputPasswordReg(
+                hintText: "Введите пароль",
                 passwordCheck: passwordCheck,
                 tab: togglePasswordView,
                 isHiddenPassword: isHiddenPassword,
               ),
               const SizedBox(height: 30),
               InputPasswordReg(
+                hintText: "Введите пароль еще раз",
                 passwordCheck: passwordMain,
                 tab: togglePasswordView,
                 isHiddenPassword: isHiddenPassword,

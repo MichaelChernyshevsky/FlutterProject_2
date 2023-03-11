@@ -6,8 +6,7 @@ class MoneyList extends Equatable {
 
   const MoneyList._(this.moneys);
 
-  factory MoneyList({List<Money>? words}) =>
-      MoneyList._(words ?? []);
+  factory MoneyList({List<Money>? words}) => MoneyList._(words ?? []);
 
   void addMoney(Money money) {
     moneys.add(money);

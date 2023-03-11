@@ -1,10 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:project/blocks/money_bloc/money_block.dart';
 import 'package:project/firebase_options.dart';
 import 'package:project/models/app_routes.dart';
 import 'package:project/provider/user.provider.dart';
+import 'package:project/service/hive_service.dart';
+import 'package:project/service/money_service.dart';
 import 'package:project/ui/main/home.dart';
-import 'package:project/ui/main/view/money_screen.dart';
 import 'package:project/ui/splash_screen.dart';
 import 'package:project/ui/start/login_screen.dart';
 import 'package:project/ui/start/redistration_screen.dart';
@@ -17,7 +22,20 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // GetIt.I.registerSingleton<>();
+  await Hive.initFlutter();
+
+  GetIt.I.registerSingletonAsync<HiveService>(
+    () async {
+      HiveService hiveService = HiveService();
+      await hiveService.init();
+      return hiveService;
+    },
+  );
+  GetIt.I.registerSingletonWithDependencies<MoneyRepository>(
+      () => MoneyRepository(),
+      dependsOn: [HiveService]);
+
+  await GetIt.I.allReady();
 
   runApp(
     MultiProvider(
@@ -65,13 +83,13 @@ class _MyAppState extends State<MyApp> {
         AppRoute.initial: (_) => const SplashScreen(),
         AppRoute.registration: (_) => const RegistrationScreen(),
         AppRoute.login: (_) => const LoginScreen(),
-        // AppRoute.home: (context) => BlocProvider(
-        //     create: (BuildContext context) =>
-        //         DictsBloc(GetIt.I.get<DictionarySevice>()),
-        //     child: const HomeScreen()),
-        // AppRoute.money: (_) =>  MoneyScreen(),
+        AppRoute.home: (context) => BlocProvider(
+            create: (BuildContext context) =>
+                MoneyBloc(GetIt.I.get<MoneyRepository>()),
+            child: const HomeScreen()),
+        //AppRoute.money: (_) =>  MoneyScreen(),
       },
-      initialRoute: AppRoute.home,
+      initialRoute: AppRoute.initial,
     );
   }
 }

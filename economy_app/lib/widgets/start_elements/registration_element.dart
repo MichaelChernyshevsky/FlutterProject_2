@@ -18,8 +18,10 @@ class InputEmailReg extends StatelessWidget {
       validator: (email) => email != null && !EmailValidator.validate(email)
           ? 'Введите правильный Email'
           : null,
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
         hintText: 'Введите Email',
       ),
     );
@@ -32,11 +34,13 @@ class InputPasswordReg extends StatelessWidget {
     required this.passwordCheck,
     required this.tab,
     required this.isHiddenPassword,
+    required this.hintText,
   });
 
   final TextEditingController passwordCheck;
   final VoidCallback tab;
   final bool isHiddenPassword;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +52,10 @@ class InputPasswordReg extends StatelessWidget {
       validator: (value) =>
           value != null && value.length < 6 ? 'Минимум 6 символов' : null,
       decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        hintText: 'Введите пароль еще раз',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        hintText: hintText,
         suffix: InkWell(
           onTap: tab,
           child: Icon(

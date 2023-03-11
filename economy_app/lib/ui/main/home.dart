@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     controller.addListener(() {
       setState(() {});
     });
-    BlocProvider.of<MoneyBloc>(context).add(const LoadMoneys());
+    BlocProvider.of<MoneyBloc>(context).add(const LoadMoneysEvent());
   }
 
   // appbar который меняет свой title  в зависимости от  body
@@ -44,13 +44,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       case 1:
         return AppBar(
           title: const Text(
-            "Dictionaries",
+            "List",
             style: TextStyle(color: Colors.black87),
           ),
           actions: [
             IconButton(
                 onPressed: () {
-                  addSpending(context, name);
+                  addSpending(context);
                 },
                 icon: const Icon(Icons.add)),
           ],
@@ -76,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               return TabBarView(
                 controller: controller,
                 children: [
-                  MainScreen(moneysList: state.moneyList),
-                  MoneyScreen(moneyList: state.moneyList),
+                  MainScreen(moneysList: state.moneys),
+                  MoneyScreen(moneyList: state.moneys),
                   const AccountScreen(),
                 ],
               );
@@ -100,19 +100,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             isFloating: true,
             borderRadius: const Radius.circular(22),
             iconSize: 22.0,
-            selectedColor: const Color(0xff040307),
-            strokeColor: const Color(0x30040307),
-            unSelectedColor: const Color(0xffacacac),
-            backgroundColor: Colors.white,
+            selectedColor: const Color(0xff28E71D),
+            strokeColor: const Color(0xff1F2358),
+            unSelectedColor: const Color(0x5528E71D),
+            backgroundColor: const Color(0xff1F2358),
             items: [
               CustomNavigationBarItem(
-                icon: const Icon(Icons.cast_for_education_rounded),
+                icon: const Icon(Icons.home),
               ),
               CustomNavigationBarItem(
-                icon: const Icon(Icons.shopping_cart),
+                icon: const Icon(Icons.list_alt_sharp),
               ),
               CustomNavigationBarItem(
-                icon: const Icon(Icons.lightbulb_outline),
+                icon: const Icon(Icons.person),
               ),
             ],
             currentIndex: controller.index,

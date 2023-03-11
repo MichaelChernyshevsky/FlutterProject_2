@@ -1,6 +1,3 @@
-import 'package:app_english/models/app_route.dart';
-import 'package:app_english/models/dictionaries/dictionary.dart';
-
 import 'package:flutter/material.dart';
 import 'package:project/models/money.dart';
 import 'package:project/widgets/main/moneys_list.dart';
@@ -20,7 +17,7 @@ class _MoneyScreenState extends State<MoneyScreen> {
     return Column(
       children: [
         MoneysList(
-          moneysList: moneyList,
+          moneysList: widget.moneyList,
         ),
       ],
     );

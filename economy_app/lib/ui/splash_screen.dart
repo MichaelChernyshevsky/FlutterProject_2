@@ -17,8 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (Provider.of<UserProvider>(context, listen: false).isLoggedIn) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(AppRoute.home, (route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(AppRoute.home, (route) => false);
         }
       },
     );

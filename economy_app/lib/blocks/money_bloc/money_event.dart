@@ -7,14 +7,14 @@ abstract class MoneyEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadMoneys extends MoneyEvent {
-  const LoadMoneys();
+class LoadMoneysEvent extends MoneyEvent {
+  const LoadMoneysEvent();
 }
 
-class AddMoney extends MoneyEvent {
+class AddMoneyEvent extends MoneyEvent {
   final Money money;
 
-  const AddMoney({
+  const AddMoneyEvent({
     required this.money,
   });
 
@@ -22,9 +22,9 @@ class AddMoney extends MoneyEvent {
   List<Object> get props => [money];
 }
 
-class ChangeMoney extends MoneyEvent {
+class ChangeMoneyEvent extends MoneyEvent {
   final Money money;
-  const ChangeMoney({
+  const ChangeMoneyEvent({
     required this.money,
   });
 
@@ -32,9 +32,9 @@ class ChangeMoney extends MoneyEvent {
   List<Object> get props => [money];
 }
 
-class DeleteMoney extends MoneyEvent {
+class DeleteMoneyEvent extends MoneyEvent {
   final Money money;
-  const DeleteMoney({
+  const DeleteMoneyEvent({
     required this.money,
   });
 

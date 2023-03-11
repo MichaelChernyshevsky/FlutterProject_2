@@ -15,9 +15,7 @@ class InputEmailLogin extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       controller: email,
-      validator: (email) => email != null && !EmailValidator.validate(email)
-          ? 'Введите правильный Email'
-          : null,
+      validator: (email) => email != null && !EmailValidator.validate(email) ? 'Введите правильный Email' : null,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
@@ -46,8 +44,7 @@ class InputPasswordLogin extends StatelessWidget {
       autocorrect: false,
       controller: password,
       obscureText: isHiddenPassword,
-      validator: (value) =>
-          value != null && value.length < 6 ? 'Минимум 6 символов' : null,
+      validator: (value) => value != null && value.length < 6 ? 'Минимум 6 символов' : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         fillColor: Colors.orange,

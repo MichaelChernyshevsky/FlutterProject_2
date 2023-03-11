@@ -1,38 +1,38 @@
+import 'package:get_it/get_it.dart';
 import 'package:project/models/money.dart';
-import 'package:project/widgets/main/moneys_list.dart';
+import 'package:project/service/hive_service.dart';
 
-class MoneySevice {
-  final List<MoneyList> moneys;
+class MoneyRepository {
+  HiveService hiveService = GetIt.I.get<HiveService>();
 
-  // Listen to Firebase provider for changes
-  // If dictionaries changed => update
-
-  Future<bool> loadMoneys() async {
+  Future<List<Money>?> getMoneys({DateTime? dateFilter}) async {
     // Firebase load
     // Hive clean and add all new dictionaries
     // or
     // Hive load
+    final hivesMoney = hiveService.getMoneys(dateFilter: dateFilter);
 
-    return true;
+    return hivesMoney;
   }
 
-  Future<bool> addMoneyToList(Money money) async {
+  Future<bool> addMoney(Money money) async {
     const bool isOk = true;
+
+    return hiveService.addMoney(money);
     // Hive add
     // Firebase add
     // In case of error => isOk = false
 
-    moneys.addMoney;
     return isOk;
   }
 
-  Future<bool> deleteMoneyFromList(Money money) async {
+  Future<bool> deleteMoney(Money money) async {
     const bool isOk = true;
-    // Hive add
+
+    return hiveService.removeMoney(money);
+
     // Firebase add
     // In case of error => isOk = false
-
-    moneys.deleteMoney(money);
 
     return isOk;
   }

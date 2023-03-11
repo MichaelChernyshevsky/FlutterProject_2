@@ -11,7 +11,7 @@ class UserProvider extends ChangeNotifier {
   bool get isLoggedIn => user != null;
   init() {
     user = FirebaseAuth.instance.currentUser;
-    userMail = user?.email;    
+    userMail = user?.email;
     FirebaseAuth.instance.authStateChanges().listen((event) {
       user = user;
       notifyListeners();
@@ -19,12 +19,9 @@ class UserProvider extends ChangeNotifier {
   }
 
 // вход
-  Future<User?> login(context,
-      {required String email, required String password}) async {
+  Future<User?> login(context, {required String email, required String password}) async {
     try {
-      user = (await FirebaseAuth.instance
-              .signInWithEmailAndPassword(email: email, password: password))
-          .user;
+      user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)).user;
 
       return user;
     } on FirebaseAuthException catch (e) {
@@ -54,9 +51,7 @@ class UserProvider extends ChangeNotifier {
 // регистрация
   Future registration(context, {required password, required email}) async {
     try {
-      user = (await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(email: email, password: password))
-          .user;
+      user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         NotificationService.showSnackBar(
