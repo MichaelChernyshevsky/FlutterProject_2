@@ -53,8 +53,6 @@ class _LoginState extends State<LoginScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Войти'),
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 23,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -84,12 +82,6 @@ class _LoginState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              // мы думаем что у нас есть акккунт но мы забыли паспрот )
-              // TextButton(
-              //   onPressed: () =>
-              //       Navigator.of(context).pushNamed('/reset_password'),
-              //   child: const Text('Сбросить пароль'),
-              // ),
             ],
           ),
         ),

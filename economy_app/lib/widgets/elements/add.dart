@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/blocks/money_bloc/money_block.dart';
 import 'package:project/blocks/money_bloc/money_event.dart';
 import 'package:project/models/money.dart';
 import 'package:project/service/notification.dart';
-import 'package:project/widgets/main/add_elements.dart';
+import 'package:project/widgets/elements/type.picker.dart';
 
 Future<void> addSpending(
   context,
@@ -18,25 +17,6 @@ Future<void> addSpending(
   TextEditingController walue = TextEditingController();
   TextEditingController dollar = TextEditingController();
   DateTime wastedDate = DateTime.now();
-  int selecteditem = 0;
-  List<String> types = <String>["Any", "Home", "Food", "Study", "Other"];
-
-  void _showDialog(context, Widget child) {
-    showCupertinoModalPopup<void>(
-        context: context,
-        builder: (BuildContext context) => Container(
-              height: 216,
-              padding: const EdgeInsets.only(top: 6.0),
-              margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              child: SafeArea(
-                top: false,
-                child: child,
-              ),
-            ));
-  }
 
   return showDialog<void>(
       context: context,
@@ -54,6 +34,7 @@ Future<void> addSpending(
             children: [
               TextField(
                 decoration: const InputDecoration(hintText: "Amount"),
+                keyboardType: TextInputType.number,
                 controller: waste,
               ),
               TextField(
@@ -62,42 +43,16 @@ Future<void> addSpending(
                 controller: description,
               ),
               TextField(
-                decoration:
-                    const InputDecoration(hintText: "Monetary currency"),
+                decoration: const InputDecoration(hintText: "Walue"),
                 controller: walue,
               ),
               TextField(
                 decoration:
                     const InputDecoration(hintText: "Relation to the dollar"),
+                keyboardType: TextInputType.number,
                 controller: dollar,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text("Type"),
-                  CupertinoButton(
-                    child: Text(types[selecteditem]),
-                    onPressed: () => _showDialog(
-                      context,
-                      CupertinoPicker(
-                        itemExtent: 20,
-                        onSelectedItemChanged: (int? index) {
-                          selecteditem = index!;
-                          type = types[index];
-                        },
-                        children:
-                            List<Widget>.generate(types.length, (int index) {
-                          return Center(
-                            child: Text(
-                              types[index],
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              TypePicker(chosetype: type),
             ],
           ),
           actions: <Widget>[
@@ -124,8 +79,8 @@ Future<void> addSpending(
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                if (waste.text.isEmpty &&
-                    walue.text.isEmpty &&
+                if (waste.text.isEmpty ||
+                    walue.text.isEmpty ||
                     dollar.text.isEmpty) {
                   NotificationService.showSnackBar(
                     context,

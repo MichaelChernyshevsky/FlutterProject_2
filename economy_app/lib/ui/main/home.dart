@@ -4,10 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/blocks/money_bloc/money_block.dart';
 import 'package:project/blocks/money_bloc/money_event.dart';
 import 'package:project/blocks/money_bloc/money_state.dart';
+import 'package:project/provider/user.provider.dart';
 import 'package:project/ui/main/view/account_screen.dart';
 import 'package:project/ui/main/view/main_screen.dart';
 import 'package:project/ui/main/view/money_screen.dart';
-import 'package:project/widgets/main/add.dart';
+import 'package:project/widgets/elements/add.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: [
                   MainScreen(moneysList: state.moneys),
                   MoneyScreen(moneyList: state.moneys),
-                  const AccountScreen(),
+                  AccountScreen(),
                 ],
               );
             }

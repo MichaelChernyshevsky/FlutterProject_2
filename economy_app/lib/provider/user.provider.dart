@@ -4,24 +4,36 @@ import 'package:project/service/notification.dart';
 
 class UserProvider extends ChangeNotifier {
   UserProvider() {
-    init();
+    FirebaseAuth.instance.userChanges().listen((event) {
+      user = event;
+      notifyListeners();
+    });
   }
   User? user;
   String? userMail;
   bool get isLoggedIn => user != null;
-  init() {
+
+  Future<bool> checkLogin() async {
     user = FirebaseAuth.instance.currentUser;
     userMail = user?.email;
-    FirebaseAuth.instance.authStateChanges().listen((event) {
-      user = user;
+    try {
+      await user?.reload();
+    } catch (_) {
+      user = null;
+      userMail = null;
       notifyListeners();
-    });
+      return false;
+    }
+    return true;
   }
 
 // вход
-  Future<User?> login(context, {required String email, required String password}) async {
+  Future<User?> login(context,
+      {required String email, required String password}) async {
     try {
-      user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)).user;
+      user = (await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: email, password: password))
+          .user;
 
       return user;
     } on FirebaseAuthException catch (e) {
@@ -51,7 +63,9 @@ class UserProvider extends ChangeNotifier {
 // регистрация
   Future registration(context, {required password, required email}) async {
     try {
-      user = (await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)).user;
+      user = (await FirebaseAuth.instance
+              .createUserWithEmailAndPassword(email: email, password: password))
+          .user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         NotificationService.showSnackBar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/app_routes.dart';
 import 'package:project/widgets/elements/card_element.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -25,7 +26,9 @@ class _AccountScreenState extends State<AccountScreen> {
                     Icons.person,
                   ),
                   color: Colors.amber,
-                  tab: () {},
+                  tab: () {
+                    Navigator.pushNamed(context, AppRoute.account);
+                  },
                 ),
                 const SizedBox(
                   height: 30,
@@ -34,7 +37,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   text: "Info",
                   icon: const Icon(Icons.info),
                   color: Colors.amber,
-                  tab: (() {}),
+                  tab: () {},
                 ),
                 const SizedBox(
                   height: 30,

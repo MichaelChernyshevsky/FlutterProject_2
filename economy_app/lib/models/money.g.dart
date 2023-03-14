@@ -19,7 +19,7 @@ class MoneyAdapter extends TypeAdapter<Money> {
     return Money(
       fields[0] as double,
       fields[1] as String?,
-      fields[2] as String,
+      fields[2] as String?,
       fields[3] as String,
       fields[4] as double,
       fields[5] as DateTime,

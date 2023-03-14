@@ -10,6 +10,7 @@ import 'package:project/provider/user.provider.dart';
 import 'package:project/service/hive_service.dart';
 import 'package:project/service/money_service.dart';
 import 'package:project/ui/main/home.dart';
+import 'package:project/ui/main/view/account_screen.dart';
 import 'package:project/ui/splash_screen.dart';
 import 'package:project/ui/start/login_screen.dart';
 import 'package:project/ui/start/redistration_screen.dart';
@@ -87,7 +88,7 @@ class _MyAppState extends State<MyApp> {
             create: (BuildContext context) =>
                 MoneyBloc(GetIt.I.get<MoneyRepository>()),
             child: const HomeScreen()),
-        //AppRoute.money: (_) =>  MoneyScreen(),
+        AppRoute.account: (_) => AccountScreen(),
       },
       initialRoute: AppRoute.initial,
     );
